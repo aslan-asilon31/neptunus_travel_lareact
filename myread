@@ -1,0 +1,10 @@
+======== laravel reactjs inertia crud with image
+https://techvblogs.com/blog/build-crud-app-with-laravel-9-and-reactjs
+
+
+======= laravel reactjs inertia crud
+https://websolutionstuff.com/post/laravel-9-react-js-crud-operation-example
+
+===== when cannot push to github 
+after generate new token
+git remote set-url origin https://<token>@github.com/<username>/<repo>
