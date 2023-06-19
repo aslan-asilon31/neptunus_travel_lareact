@@ -1,8 +1,5 @@
-// import '@/Assets/Frontend/styles.css';
-import stay1 from '@/Assets/Frontend/assets/stay1.jpg';
-import stay2 from '@/Assets/Frontend/assets/stay2.jpg';
-import stay3 from '@/Assets/Frontend/assets/stay3.jpg';
-import stay4 from '@/Assets/Frontend/assets/stay4.jpg';
+import React, { useState } from 'react';
+
 import avatar from '@/Assets/Frontend/assets/avatar.png';
 import bali1 from '@/Assets/Frontend/assets/bali1.jpg';
 import gal1 from '@/Assets/Frontend/assets/gal1.jpg';
@@ -10,225 +7,169 @@ import gal2 from '@/Assets/Frontend/assets/gal2.jpg';
 import gal3 from '@/Assets/Frontend/assets/gal3.jpg';
 import gal4 from '@/Assets/Frontend/assets/gal4.jpg';
 
+import HotelRecomendation from '@/Pages/Visitor/HotelRecomendation/HotelRecomendation';
+import DepartureSchedule from '@/Pages/Visitor/DepartureSchedule/DepartureSchedule';
+import TourPackage from '@/Pages/Visitor/TourPackage/TourPackage';
+import TravelerReview from '@/Pages/Visitor/TravelerReview/TravelerReview';
+import PriceComparison from '@/Pages/Visitor/PriceComparison/PriceComparison';
+
+
 export default function Welcome({ auth, laravelVersion, phpVersion }) {
+    const [showHotelRecommendation, setShowHotelRecommendation] = useState(true);
+    const [showDepartureSchedule, setShowDepartureSchedule] = useState(false);
+    const [showTourPackage, setShowTourPackage] = useState(false);
+    const [showTravelerReview, setShowTravelerReview] = useState(false);
+    const [showPriceComparison, setShowPriceComparison] = useState(false);
+    
+    const handleHotelRecommendationClick = () => {
+      setShowHotelRecommendation(true);
+      setShowDepartureSchedule(false);
+      setShowTourPackage(false);
+      setShowTravelerReview(false);
+      setShowPriceComparison(false);
+    };  
+
+    const handleDepartureScheduleClick = () => {
+      setShowHotelRecommendation(false);
+      setShowDepartureSchedule(true);
+      setShowTourPackage(false);
+      setShowTravelerReview(false);
+      setShowPriceComparison(false);
+
+    };
+  
+    const handleTourPackageClick = () => {
+      setShowHotelRecommendation(false);
+      setShowDepartureSchedule(false);
+      setShowTourPackage(true);
+      setShowTravelerReview(false);
+      setShowPriceComparison(false);
+
+    };
+  
+    const handleTravelerReviewClick = () => {
+      setShowHotelRecommendation(false);
+      setShowDepartureSchedule(false);
+      setShowTourPackage(false);
+      setShowTravelerReview(true);
+      setShowPriceComparison(false);
+    };
+  
+    const handlePriceComparisonClick = () => {
+      setShowHotelRecommendation(false);
+      setShowDepartureSchedule(false);
+      setShowTourPackage(false);
+      setShowTravelerReview(false);
+      setShowPriceComparison(true);
+    };
+
+
+    // Change the background color when showTourPackage is true
+
+
+
     return (
         <>
     <body style={{ backgroundImage: `url(${bali1})`, }}>
-    <div class="dashboard" >
-      <div class="sidebar">
-        <div class="logo">
+    <div className="dashboard" >
+      <div className="sidebar">
+        <div className="logo" >
           <span>Neptunus</span> <br />
           Travel.
         </div>
-        <div class="sidebar--links">
-          <div class="ri-community-line sidebar--link"></div>
-          <div class="ri-flight-takeoff-line sidebar--link"></div>
-          <div class="ri-train-line sidebar--link"></div>
-          <div class="ri-roadster-line sidebar--link"></div>
-          <div class="ri-quil-pen-line sidebar--link"></div>
+        <div className="sidebar--links">
+          <div className="hotel-recomendation ri-community-line sidebar--link" onClick={handleHotelRecommendationClick}></div>
+          <div className="departure-schedule ri-flight-takeoff-line sidebar--link" onClick={handleDepartureScheduleClick}></div>
+          <div className="tour-package ri-ticket-line sidebar--link" onClick={handleTourPackageClick}></div>
+          <div className="traveler-review ri-roadster-line sidebar--link" onClick={handleTravelerReviewClick}></div>
+          <div className=" traveler-review ri-money-dollar-box-fill sidebar--link" onClick={handlePriceComparisonClick}></div>
         </div>
       </div>
-      <div class="main">
-        <div class="left">
-          <div class="search">
+      <div className="main">
+        <div className="left">
+          <div className="search">
             <input
               type="text"
               placeholder="Destination, Hotel, Attraction, etc.."
             />
-            <i class="ri-search-line search--icon"></i>
-          </div>
-          <div class="popular--stays">
-            <h2>Popular Stays</h2>
-            <p>In Bali Indonesia</p>
-            <div class="stays">
-              <div class="stay">
-                <div class="img--cover">
-                  <img src={stay1} />
-                </div>
-                <div class="stay--details">
-                  <h6>Entire bungalow in bay area</h6>
-                  <h4>Pura Tanah Lot</h4>
-                  <p>$255 / night</p>
-                  <div class="rating">
-                    <i class="ri-star-fill"></i>
-                    <p>4.5 (120)</p>
-                  </div>
-                </div>
-              </div>
-              <div class="stay">
-                <div class="img--cover">
-                  <img src={stay2} />
-                </div>
-                <div class="stay--details">
-                  <h6>Entire house in Koa Lanta Yai</h6>
-                  <h4>Udaya Resort and Spa</h4>
-                  <p>$160 / night</p>
-                  <div class="rating">
-                    <i class="ri-star-fill"></i>
-                    <p>4.5 (98)</p>
-                  </div>
-                </div>
-              </div>
-              <div class="stay">
-                <div class="img--cover">
-                  <img src={stay3} />
-                </div>
-                <div class="stay--details">
-                  <h6>With morning sunrise</h6>
-                  <h4>Jimbaran stay</h4>
-                  <p>$186 / night</p>
-                  <div class="rating">
-                    <i class="ri-star-fill"></i>
-                    <p>4.5 (74)</p>
-                  </div>
-                </div>
-              </div>
-              <div class="stay">
-                <div class="img--cover">
-                  <img src={stay4} />
-                </div>
-                <div class="stay--details">
-                  <h6>Natural beauty and sea view</h6>
-                  <h4>Nusa Dusa</h4>
-                  <p>$325 / night</p>
-                  <div class="rating">
-                    <i class="ri-star-fill"></i>
-                    <p>4.5 (99)</p>
-                  </div>
-                </div>
-              </div>
-              <div class="stay">
-                <div class="img--cover">
-                  <img src={bali1} />
-                </div>
-                <div class="stay--details">
-                  <h6>some text</h6>
-                  <h4>some tect</h4>
-                  <p>$25 / night</p>
-                  <div class="rating">
-                    <i class="ri-star-fill"></i>
-                    <p>4.5 (38)</p>
-                  </div>
-                </div>
-              </div>
-              <div class="stay">
-                <div class="img--cover">
-                  <img src={bali1} />
-                </div>
-                <div class="stay--details">
-                  <h6>some text</h6>
-                  <h4>some tect</h4>
-                  <p>$25 / night</p>
-                  <div class="rating">
-                    <i class="ri-star-fill"></i>
-                    <p>4.5 (38)</p>
-                  </div>
-                </div>
-              </div>
-              <div class="stay">
-                <div class="img--cover">
-                  <img src={bali1} />
-                </div>
-                <div class="stay--details">
-                  <h6>some text</h6>
-                  <h4>some tect</h4>
-                  <p>$25 / night</p>
-                  <div class="rating">
-                    <i class="ri-star-fill"></i>
-                    <p>4.5 (38)</p>
-                  </div>
-                </div>
-              </div>
-              <div class="stay">
-                <div class="img--cover">
-                  <img src={bali1} />
-                </div>
-                <div class="stay--details">
-                  <h6>some text</h6>
-                  <h4>some tect</h4>
-                  <p>$25 / night</p>
-                  <div class="rating">
-                    <i class="ri-star-fill"></i>
-                    <p>4.5 (38)</p>
-                  </div>
-                </div>
-              </div>
-              <div class="stay">
-                <div class="img--cover">
-                  <img src={bali1} />
-                </div>
-                <div class="stay--details">
-                  <h6>some text</h6>
-                  <h4>some tect</h4>
-                  <p>$25 / night</p>
-                  <div class="rating">
-                    <i class="ri-star-fill"></i>
-                    <p>4.5 (38)</p>
-                  </div>
-                </div>
-              </div>
-              <div class="stay">
-                <div class="img--cover">
-                  <img src={bali1} />
-                </div>
-                <div class="stay--details">
-                  <h6>some text</h6>
-                  <h4>some tect</h4>
-                  <p>$25 / night</p>
-                  <div class="rating">
-                    <i class="ri-star-fill"></i>
-                    <p>4.5 (38)</p>
-                  </div>
-                </div>
-              </div>
-              <div class="stay">
-                <div class="img--cover">
-                  <img src={bali1} />
-                </div>
-                <div class="stay--details">
-                  <h6>some text</h6>
-                  <h4>some tect</h4>
-                  <p>$25 / night</p>
-                  <div class="rating">
-                    <i class="ri-star-fill"></i>
-                    <p>4.5 (38)</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="right">
-          <div class="profile">
-            <div class="profile--cover">
-              <img src={avatar} alt="" />
-            </div>
-            <p>Hello, Aslan!</p>
-            <i class="ri-arrow-down-s-line"></i>
+            <i className="ri-search-line search--icon"></i>
           </div>
 
-          <div class="title--container">
+      <div>
+      <div className={showDepartureSchedule ? 'visible' : 'hidden'}>
+        <div className="departure-schedule">
+          <DepartureSchedule />
+        </div>
+      </div>
+      <div className={showTourPackage ? 'visible' : 'hidden'}>
+        <div className="tour-package">
+          <TourPackage />
+        </div>
+      </div>
+      <div className={showHotelRecommendation ? 'visible' : 'hidden'}>
+        <div className="hotel-recommendation">
+          <HotelRecomendation />
+        </div>
+      </div>
+      <div className={showTravelerReview ? 'visible' : 'hidden'}>
+        <div className="traveler-review">
+          <TravelerReview />
+        </div>
+      </div>
+      <div className={showPriceComparison ? 'visible' : 'hidden'}>
+        <div className="price-comparison">
+          <PriceComparison />
+        </div>
+      </div>
+      {/* <button onClick={handleDepartureScheduleClick}>
+        Show Departure Schedule
+      </button>
+      <button onClick={handleTourPackageClick}>
+        Show Tour Package
+      </button>
+      <button onClick={handleHotelRecommendationClick}>
+        Show Hotel Recommendation
+      </button>
+      <button onClick={handleTravelerReviewClick}>
+        Show Traveler Review
+      </button>
+      <button onClick={handlePriceComparisonClick}>
+        Show Price Comparison
+      </button> */}
+</div>
+
+        </div>
+        <div className="right">
+          <div className="profile">
+            <div className="profile--cover">
+              <img src={avatar} alt="" />
+            </div>
+            <p className="text-white">Hello, Aslan!</p>
+            <i className="ri-arrow-down-s-line text-white"></i>
+          </div>
+
+          <div className="title--container">
             <h4>Live as if</h4>
             <h1>The Paradise</h1>
             <h4>is on earth</h4>
-            <div class="btn">Plan a trip</div>
+            <div className="btn">Plan a trip</div>
           </div>
-          <div class="galary">
-            <div class="galary--img--cover">
+          <div className="galary">
+            <div className="galary--img--cover">
               <img src={gal1} alt="" />
             </div>
-            <div class="galary--img--cover">
+            <div className="galary--img--cover">
               <img src={gal2} alt="" />
             </div>
-            <div class="galary--img--cover">
+            <div className="galary--img--cover">
               <img src={gal3} alt="" />
             </div>
-            <div class="galary--img--cover">
+            <div className="galary--img--cover">
               <img src={gal4} alt="" />
             </div>
-            <div class="arrows">
-              <i class="ri-arrow-right-s-line"></i>
-              <i class="ri-arrow-left-s-line"></i>
+            <div className="arrows">
+              <i className="ri-arrow-right-s-line"></i>
+              <i className="ri-arrow-left-s-line"></i>
             </div>
           </div>
         </div>
